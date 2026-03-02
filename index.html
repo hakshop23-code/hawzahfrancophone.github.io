@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hawzah Francophone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #b89a5a; --gold-light: #d4b87a; --gold-pale: #f5edd8;
+      --dark: #0f0e0b; --dark2: #1a1813; --dark3: #252219;
+      --cream: #faf7f0; --cream2: #f2ece0;
+      --text: #2a2418; --text-light: #6b5f48; --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    /* RTL */
+    html[dir="rtl"] body { font-family: 'Amiri', serif; font-size: 1.05em; }
+    html[dir="rtl"] .hero-arabic { display: none; }
+    html[dir="rtl"] .nav-logo-text .main,
+    html[dir="rtl"] .hero h1,
+    html[dir="rtl"] .section-title,
+    html[dir="rtl"] .pathway-title,
+    html[dir="rtl"] .course-body h3,
+    html[dir="rtl"] .media-card h3,
+    html[dir="rtl"] .pub-card h3,
+    html[dir="rtl"] .footer-logo { font-family: 'Amiri', serif; }
+    html[dir="rtl"] .donate-quote { border-left: none; border-right: 2px solid var(--gold); text-align: right; padding: 0 20px 0 0; }
+    html[dir="rtl"] .hero-quote { border-left: none; border-right: 2px solid var(--gold); border-radius: 4px 0 0 4px; }
+    html[dir="rtl"] .pathway-number { right: auto; left: 28px; }
+    html[dir="rtl"] .course-tag { left: auto; right: 12px; }
+    html[dir="rtl"] .pathway-courses li { flex-direction: row-reverse; }
+    html[dir="rtl"] .consult-features li { flex-direction: row-reverse; }
+    html[dir="rtl"] .hero-pattern { right: auto; left: -80px; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+    .topbar { background: var(--dark); color: var(--gold-light); text-align: center; font-size: 0.8rem; letter-spacing: 0.1em; padding: 8px 20px; font-family: 'Amiri', serif; font-style: italic; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,14,11,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(184,154,90,0.2); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 36px; height: 36px; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-text .main { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--gold-light); letter-spacing: 0.04em; }
+    .nav-logo-text .sub { font-size: 0.6rem; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold) !important; padding: 6px 16px; border-radius: 2px; transition: background 0.3s, color 0.3s !important; }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--dark) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* LANG SWITCHER */
+    .lang-switcher { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,0.05); border: 1px solid rgba(184,154,90,0.25); border-radius: 3px; padding: 3px; }
+    .lang-btn { background: transparent; border: none; color: rgba(255,255,255,0.45); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; padding: 5px 11px; border-radius: 2px; cursor: pointer; transition: background 0.2s, color 0.2s; font-family: 'Jost', sans-serif; }
+    .lang-btn.active { background: var(--gold); color: var(--dark); }
+    .lang-btn:hover:not(.active) { color: var(--gold-light); background: rgba(184,154,90,0.1); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; background: var(--dark); display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(184,154,90,0.08) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,154,90,0.05) 0%, transparent 50%); }
+    .hero-pattern { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 560px; height: 560px; opacity: 0.06; }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(184,154,90,0.1); border: 1px solid rgba(184,154,90,0.3); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px; }
+    .hero-badge span { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+    .hero-arabic { font-family: 'Amiri', serif; font-size: 1.3rem; color: var(--gold); opacity: 0.8; margin-bottom: 16px; direction: rtl; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,4.2vw,3.7rem); font-weight: 300; color: var(--white); line-height: 1.15; margin-bottom: 8px; }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero h1 .block { display: block; }
+    .hero-sub { font-size: 0.93rem; color: rgba(255,255,255,0.55); line-height: 1.85; margin: 20px 0 36px; font-weight: 300; max-width: 460px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { background: var(--gold); color: var(--dark); padding: 12px 28px; border: none; border-radius: 2px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.3s, transform 0.2s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: rgba(255,255,255,0.7); padding: 12px 28px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.3s, color 0.3s; }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+    .hero-right { display: flex; flex-direction: column; gap: 20px; }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,154,90,0.15); border-radius: 4px; padding: 24px 20px; text-align: center; transition: border-color 0.3s, background 0.3s; }
+    .stat-card:hover { border-color: rgba(184,154,90,0.4); background: rgba(184,154,90,0.05); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--gold-light); line-height: 1; }
+    .stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+    .hero-quote { background: rgba(184,154,90,0.06); border-left: 2px solid var(--gold); padding: 18px 22px; border-radius: 0 4px 4px 0; }
+    .hero-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .hero-quote cite { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; display: block; font-style: normal; }
+
+    section { padding: 90px 5%; }
+    .section-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem,3.2vw,2.7rem); font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-desc { font-size: 0.92rem; color: var(--text-light); line-height: 1.85; max-width: 560px; }
+
+    /* PATHWAY */
+    #parcours { background: var(--dark2); }
+    .pathway-header { text-align: center; margin-bottom: 60px; }
+    .pathway-header .section-title { color: var(--white); }
+    .pathway-header .section-desc { color: rgba(255,255,255,0.5); margin: 0 auto; }
+    .pathway-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
+    .pathway-card { background: var(--dark3); padding: 40px 32px; position: relative; overflow: hidden; transition: background 0.3s; }
+    .pathway-card:hover { background: rgba(184,154,90,0.06); }
+    .pathway-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,transparent,var(--gold),transparent); opacity:0; transition:opacity 0.3s; }
+    .pathway-card:hover::before { opacity:1; }
+    .pathway-level { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .pathway-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+    .pathway-subtitle { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-style: italic; margin-bottom: 24px; line-height: 1.6; }
+    .pathway-courses { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .pathway-courses li { font-size: 0.82rem; color: rgba(255,255,255,0.6); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; }
+    .pathway-courses li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; opacity:0.7; }
+    .pathway-number { position:absolute; bottom:24px; right:28px; font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300; color:rgba(184,154,90,0.06); line-height:1; }
+
+    /* COURSES */
+    #cours { background: var(--cream); }
+    .courses-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:50px; flex-wrap:wrap; gap:20px; max-width:1200px; margin-left:auto; margin-right:auto; }
+    .courses-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1200px; margin:0 auto; }
+    .course-card { background:var(--white); border:1px solid rgba(0,0,0,0.07); border-radius:4px; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s; }
+    .course-card:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.1); }
+    .course-thumb { height:160px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .course-thumb-icon { font-family:'Amiri',serif; font-size:2.8rem; color:var(--gold-light); position:relative; z-index:1; }
+    .course-tag { position:absolute; top:12px; left:12px; background:var(--gold); color:var(--dark); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; border-radius:2px; font-weight:600; }
+    .course-body { padding:22px; }
+    .course-body h3 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--text); margin-bottom:8px; line-height:1.3; }
+    .course-body p { font-size:0.82rem; color:var(--text-light); line-height:1.7; margin-bottom:18px; }
+    .course-meta { display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--cream2); }
+    .course-lang { font-size:0.7rem; color:var(--text-light); }
+    .course-link { font-size:0.75rem; color:var(--gold); text-decoration:none; font-weight:600; display:flex; align-items:center; gap:5px; transition:gap 0.2s; }
+    .course-link:hover { gap:9px; }
+
+    /* MEDIA */
+    #media { background: var(--cream2); }
+    .media-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:20px; max-width:1200px; margin:0 auto; }
+    .media-card { border-radius:4px; overflow:hidden; cursor:pointer; }
+    .media-card-inner { background:var(--dark2); padding:30px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between; transition:background 0.3s; border:1px solid rgba(184,154,90,0.1); }
+    .media-card:hover .media-card-inner { background:var(--dark3); }
+    .media-type { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .media-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--white); line-height:1.3; flex:1; }
+    .media-card p { font-size:0.8rem; color:rgba(255,255,255,0.45); margin-top:12px; line-height:1.6; }
+    .media-icon { font-size:2rem; color:var(--gold); opacity:0.6; align-self:flex-start; margin-bottom:16px; }
+
+    /* CONSULT */
+    #consultations { background:var(--white); }
+    .consult-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; max-width:1100px; margin:0 auto; align-items:center; }
+    .consult-image { background:var(--dark2); height:400px; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .consult-image-arabic { font-family:'Amiri',serif; font-size:5rem; color:var(--gold); opacity:0.2; text-align:center; line-height:1.4; direction:rtl; }
+    .consult-features { list-style:none; margin:28px 0; display:flex; flex-direction:column; gap:16px; }
+    .consult-features li { display:flex; align-items:flex-start; gap:14px; font-size:0.88rem; color:var(--text-light); line-height:1.6; }
+    .consult-features li::before { content:'✦'; color:var(--gold); font-size:0.7rem; margin-top:3px; flex-shrink:0; }
+
+    /* PUBLICATIONS */
+    #publications { background:var(--dark); }
+    .pub-header { text-align:center; margin-bottom:50px; }
+    .pub-header .section-title { color:var(--white); }
+    .pub-header .section-desc { color:rgba(255,255,255,0.5); margin:0 auto; }
+    .pub-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; max-width:1100px; margin:0 auto 50px; }
+    .pub-card { background:var(--dark2); padding:32px 24px; transition:background 0.3s; cursor:pointer; }
+    .pub-card:hover { background:rgba(184,154,90,0.08); }
+    .pub-icon { font-size:1.8rem; color:var(--gold); opacity:0.7; margin-bottom:16px; }
+    .pub-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--white); margin-bottom:8px; line-height:1.3; }
+    .pub-card p { font-size:0.78rem; color:rgba(255,255,255,0.4); line-height:1.6; }
+    .pub-cta { text-align:center; }
+
+    /* DONS */
+    #dons { background:var(--gold-pale); text-align:center; padding:80px 5%; }
+    .donate-content { max-width:600px; margin:0 auto; }
+    .donate-quote { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; color:var(--text-light); margin:20px 0 32px; line-height:1.8; padding:0 0 0 20px; border-left:2px solid var(--gold); text-align:left; }
+
+    /* FOOTER */
+    footer { background:var(--dark); color:rgba(255,255,255,0.5); padding:60px 5% 30px; }
+    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px; }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold-light); margin-bottom:12px; }
+    .footer-brand p { font-size:0.82rem; line-height:1.8; color:rgba(255,255,255,0.4); }
+    .footer-col h4 { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:10px; }
+    .footer-col ul a { font-size:0.82rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.3s; }
+    .footer-col ul a:hover { color:var(--gold-light); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.07); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .footer-bottom p { font-size:0.75rem; color:rgba(255,255,255,0.25); }
+    .footer-langs { display:flex; gap:12px; }
+    .lang-badge { font-size:0.65rem; padding:3px 9px; border:1px solid rgba(184,154,90,0.3); border-radius:100px; color:rgba(255,255,255,0.4); }
+
+    .fade-up { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:960px) {
+      .hero-content { grid-template-columns:1fr; }
+      .hero-right { display:none; }
+      .pathway-grid,.pub-grid { grid-template-columns:1fr; }
+      .courses-grid,.media-grid { grid-template-columns:1fr 1fr; }
+      .consult-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:640px) {
+      .nav-links { display:none; }
+      .courses-grid,.media-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar" data-i18n="topbar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ — Au nom de Dieu, le Tout Miséricordieux, le Très Miséricordieux</div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 60 60" fill="none">
+      <polygon points="30,4 56,20 56,40 30,56 4,40 4,20" stroke="#b89a5a" stroke-width="1.5" fill="none"/>
+      <polygon points="30,14 46,23 46,37 30,46 14,37 14,23" stroke="#b89a5a" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="30" cy="30" r="5" fill="#b89a5a" opacity="0.7"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="main" data-i18n="logo_main">Hawzah Francophone</span>
+      <span class="sub" data-i18n="logo_sub">Institut Islamique</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#parcours" data-i18n="nav_pathway">Parcours</a></li>
+      <li><a href="#cours" data-i18n="nav_courses">Cours</a></li>
+      <li><a href="#media" data-i18n="nav_media">Médias</a></li>
+      <li><a href="#consultations" data-i18n="nav_consult">Consultations</a></li>
+      <li><a href="#publications" data-i18n="nav_pub">Publications</a></li>
+      <li><a href="#dons" class="nav-cta" data-i18n="nav_donate">Don</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('ar')">ع</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-pattern" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#b89a5a" stroke-width="1" fill="none">
+      <polygon points="250,10 490,140 490,360 250,490 10,360 10,140"/>
+      <polygon points="250,50 460,160 460,340 250,450 40,340 40,160"/>
+      <polygon points="250,90 430,180 430,320 250,410 70,320 70,180"/>
+      <line x1="250" y1="10" x2="250" y2="490"/>
+      <line x1="10" y1="140" x2="490" y2="360"/>
+      <line x1="490" y1="140" x2="10" y2="360"/>
+      <circle cx="250" cy="250" r="60"/><circle cx="250" cy="250" r="110"/><circle cx="250" cy="250" r="160"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><span data-i18n="hero_badge">Institut Islamique Francophone</span></div>
+      <div class="hero-arabic">الحوزة الفرانكوفونية</div>
+      <h1>
+        <span class="block" data-i18n="hero_h1_1">Découvrez</span>
+        <span class="block"><span data-i18n="hero_h1_2">la beauté de</span> <em data-i18n="hero_h1_em1">l'Islam</em></span>
+        <span class="block"><span data-i18n="hero_h1_3">par la</span> <em data-i18n="hero_h1_em2">connaissance</em></span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">Hawzah Francophone est dédiée à approfondir la littératie islamique au sein de nos communautés, en proposant des ressources éducatives enrichissantes en français, arabe et anglais.</p>
+      <div class="hero-actions">
+        <a href="#cours" class="btn-primary" data-i18n="hero_cta1">Voir les cours</a>
+        <a href="#parcours" class="btn-secondary" data-i18n="hero_cta2">Notre parcours</a>
+      </div>
+    </div>
+    <div class="hero-right fade-up">
+      <div class="hero-stats">
+        <div class="stat-card"><div class="stat-number">30+</div><div class="stat-label" data-i18n="stat1">Cours en ligne</div></div>
+        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label" data-i18n="stat2">Langues</div></div>
+        <div class="stat-card"><div class="stat-number">500+</div><div class="stat-label" data-i18n="stat3">Étudiants</div></div>
+        <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label" data-i18n="stat4">Sciences islamiques</div></div>
+      </div>
+      <div class="hero-quote">
+        <p data-i18n="hero_quote">« Cherchez la connaissance du berceau jusqu'à la tombe. »</p>
+        <cite data-i18n="hero_quote_author">— Le Prophète Muhammad ﷺ</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="pathway-header fade-up">
+    <div class="section-label" data-i18n="pathway_label">Hawzah Learning Pathway</div>
+    <h2 class="section-title"><span data-i18n="pathway_title">Votre parcours d'</span><em data-i18n="pathway_title_em">apprentissage</em></h2>
+    <p class="section-desc" data-i18n="pathway_desc">Un chemin structuré du fondamental à l'avancé pour guider chaque chercheur de vérité.</p>
+  </div>
+  <div class="pathway-grid">
+    <div class="pathway-card fade-up">
+      <div class="pathway-level" data-i18n="level1">Niveau 1</div>
+      <h3 class="pathway-title" data-i18n="level1_title">Fondements de la Foi</h3>
+      <p class="pathway-subtitle" data-i18n="level1_sub">Commencez votre voyage avec les connaissances essentielles qui ancrent la croyance, la pratique et le caractère.</p>
+      <ul class="pathway-courses">
+        <li data-i18n="l1c1">Dieu et Ses Attributs</li><li data-i18n="l1c2">Théologie Islamique</li>
+        <li data-i18n="l1c3">Droit Islamique</li><li data-i18n="l1c4">Spiritualité Islamique</li>
+        <li data-i18n="l1c5">Introduction au Tajweed</li><li data-i18n="l1c6">Éthique Islamique</li>
+        <li data-i18n="l1c7">+ 2 cours au choix</li>
+      </ul>
+      <div class="pathway-number">١</div>
+    </div>
+    <div class="pathway-card fade-up" style="transition-delay:0.1s">
+      <div class="pathway-level" data-i18n="level2">Niveau 2</div>
+      <h3 class="pathway-title" data-i18n="level2_title">Approfondissement</h3>
+      <p class="pathway-subtitle" data-i18n="level2_sub">Développez vos fondations grâce à une étude plus approfondie des sciences islamiques.</p>
+      <ul class="pathway-courses">
+        <li data-i18n="l2c1">Science du Hadith</li><li data-i18n="l2c2">Eschatologie Islamique</li>
+        <li data-i18n="l2c3">Grammaire Arabe</li><li data-i18n="l2c4">La Prière Islamique</li>
+        <li data-i18n="l2c5">Cosmologie Islamique</li><li data-i18n="l2c6">L'Imamat</li>
+        <li data-i18n="l2c7">+ 2 cours au choix</li>
+      </ul>
+      <div class="pathway-number">٢</div>
+    </div>
+    <div class="pathway-card fade-up" style="transition-delay:0.2s">
+      <div class="pathway-level" data-i18n="level3">Niveau 3</div>
+      <h3 class="pathway-title" data-i18n="level3_title">Enquête Avancée</h3>
+      <p class="pathway-subtitle" data-i18n="level3_sub">Engagez-vous avec des concepts complexes et des débats critiques pour renforcer votre intellect.</p>
+      <ul class="pathway-courses">
+        <li data-i18n="l3c1">Théorie Juridique Islamique</li><li data-i18n="l3c2">Jésus dans le Coran</li>
+        <li data-i18n="l3c3">L'Imam Al-Mahdi</li><li data-i18n="l3c4">Historiographie Islamique</li>
+        <li data-i18n="l3c5">Infaillibilité des Prophètes</li><li data-i18n="l3c6">Prédestination et Libre Arbitre</li>
+        <li data-i18n="l3c7">+ 2 cours au choix</li>
+      </ul>
+      <div class="pathway-number">٣</div>
+    </div>
+  </div>
+</section>
+
+<section id="cours">
+  <div class="courses-header">
+    <div>
+      <div class="section-label fade-up" data-i18n="courses_label">Cours en vedette</div>
+      <h2 class="section-title fade-up"><span data-i18n="courses_title">Explorez nos </span><em data-i18n="courses_title_em">enseignements</em></h2>
+    </div>
+    <a href="#" class="btn-primary fade-up" data-i18n="courses_all">Tous les cours →</a>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card fade-up">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#1a1813,#2d2518);">
+        <div class="course-thumb-icon">الحديث</div><span class="course-tag" data-i18n="level2_short">Niv. 2</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c1_title">La Science du Hadith</h3>
+        <p data-i18n="c1_desc">Introduction à la terminologie du hadith et au développement historique de sa transmission.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR / 🌍 AR</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+    <div class="course-card fade-up" style="transition-delay:0.1s">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#0f1a1a,#162525);">
+        <div class="course-thumb-icon">الله</div><span class="course-tag" data-i18n="level1_short">Niv. 1</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c2_title">Dieu et Ses Attributs</h3>
+        <p data-i18n="c2_desc">Exploration de la conception coranique de Dieu, ses attributs inhérents et relationnels.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+    <div class="course-card fade-up" style="transition-delay:0.2s">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#1a1510,#2a1f0f);">
+        <div class="course-thumb-icon">الفقه</div><span class="course-tag" data-i18n="level1_short">Niv. 1</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c3_title">Introduction au Droit Islamique</h3>
+        <p data-i18n="c3_desc">Aperçu général du droit islamique : histoire, sources et méthodologie.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR / 🇬🇧 EN</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+    <div class="course-card fade-up">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#10151a,#152030);">
+        <div class="course-thumb-icon">النحو</div><span class="course-tag" data-i18n="level2_short">Niv. 2</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c4_title">Grammaire Arabe</h3>
+        <p data-i18n="c4_desc">Compréhension fondamentale des structures grammaticales de la langue arabe classique.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+    <div class="course-card fade-up" style="transition-delay:0.1s">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#1a1018,#251528);">
+        <div class="course-thumb-icon">التصوف</div><span class="course-tag" data-i18n="level1_short">Niv. 1</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c5_title">Spiritualité Islamique</h3>
+        <p data-i18n="c5_desc">Les thèmes clés de la purification intérieure dans la tradition islamique.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+    <div class="course-card fade-up" style="transition-delay:0.2s">
+      <div class="course-thumb" style="background:linear-gradient(135deg,#141a10,#1e2815);">
+        <div class="course-thumb-icon">الإمامة</div><span class="course-tag" data-i18n="level2_short">Niv. 2</span>
+      </div>
+      <div class="course-body">
+        <h3 data-i18n="c6_title">L'Imamat dans la Pensée Islamique</h3>
+        <p data-i18n="c6_desc">Fondements coraniques et signification théologique du concept d'Imamat.</p>
+        <div class="course-meta"><span class="course-lang">🇫🇷 FR / 🌍 AR</span><a href="#" class="course-link" data-i18n="learn_more">En savoir plus →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="media">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label fade-up" data-i18n="media_label">Contenus médias</div>
+    <h2 class="section-title fade-up"><span data-i18n="media_title">Vidéos & </span><em data-i18n="media_title_em">Podcast</em></h2>
+    <p class="section-desc fade-up" style="margin-bottom:40px" data-i18n="media_desc">Des contenus audiovisuels enrichissants pour nourrir votre réflexion spirituelle et intellectuelle.</p>
+    <div class="media-grid">
+      <div class="media-card fade-up"><div class="media-card-inner"><div><div class="media-icon">▶</div><div class="media-type" data-i18n="media_type1">Série vidéo</div><h3 data-i18n="media_title1">Les Fondements de la Théologie Islamique</h3></div><p data-i18n="media_meta1">12 épisodes · Français · Niveau débutant</p></div></div>
+      <div class="media-card fade-up" style="transition-delay:0.1s"><div class="media-card-inner"><div><div class="media-icon">🎙</div><div class="media-type" data-i18n="media_type2">Podcast</div><h3 data-i18n="media_title2">Hawzah Talks – Questions contemporaines</h3></div><p data-i18n="media_meta2">Épisodes hebdomadaires · FR / AR</p></div></div>
+      <div class="media-card fade-up" style="transition-delay:0.2s"><div class="media-card-inner"><div><div class="media-icon">📖</div><div class="media-type" data-i18n="media_type3">Conférences</div><h3 data-i18n="media_title3">L'Islam et le monde moderne</h3></div><p data-i18n="media_meta3">Séries thématiques · Multilingue</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="consultations">
+  <div class="consult-grid">
+    <div class="consult-image fade-up"><div class="consult-image-arabic">استفت<br/>قلبك</div></div>
+    <div class="fade-up" style="transition-delay:0.15s">
+      <div class="section-label" data-i18n="consult_label">Consultations & Q&A</div>
+      <h2 class="section-title"><span data-i18n="consult_title">Des réponses à vos </span><em data-i18n="consult_title_em">questions islamiques</em></h2>
+      <p class="section-desc" data-i18n="consult_desc">Notre équipe de savants est disponible pour répondre à vos questions religieuses avec rigueur et bienveillance.</p>
+      <ul class="consult-features">
+        <li data-i18n="cf1">Questions de jurisprudence (fiqh) et de pratique quotidienne</li>
+        <li data-i18n="cf2">Questions théologiques et philosophiques</li>
+        <li data-i18n="cf3">Consultations spirituelles personnalisées</li>
+        <li data-i18n="cf4">Réponses disponibles en français, arabe et anglais</li>
+        <li data-i18n="cf5">Accès à une archive de Q&A existants</li>
+      </ul>
+      <a href="#" class="btn-primary" data-i18n="consult_btn">Poser une question</a>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="pub-header fade-up">
+    <div class="section-label" data-i18n="pub_label">Publications</div>
+    <h2 class="section-title"><span data-i18n="pub_title">Nos </span><em data-i18n="pub_title_em">ouvrages</em><span data-i18n="pub_title2"> & ressources</span></h2>
+    <p class="section-desc" data-i18n="pub_desc">Des publications rigoureuses pour accompagner votre apprentissage.</p>
+  </div>
+  <div class="pub-grid">
+    <div class="pub-card fade-up"><div class="pub-icon">📜</div><h3 data-i18n="pub1_title">Articles & Essais</h3><p data-i18n="pub1_desc">Analyses approfondies sur des sujets islamiques contemporains et classiques.</p></div>
+    <div class="pub-card fade-up" style="transition-delay:0.1s"><div class="pub-icon">📚</div><h3 data-i18n="pub2_title">Guides d'étude</h3><p data-i18n="pub2_desc">Documents pédagogiques et notes de cours pour compléter l'apprentissage.</p></div>
+    <div class="pub-card fade-up" style="transition-delay:0.2s"><div class="pub-icon">📄</div><h3 data-i18n="pub3_title">Traductions</h3><p data-i18n="pub3_desc">Textes classiques traduits en français pour les communautés francophones.</p></div>
+    <div class="pub-card fade-up" style="transition-delay:0.3s"><div class="pub-icon">🔖</div><h3 data-i18n="pub4_title">Lexiques & Glossaires</h3><p data-i18n="pub4_desc">Références terminologiques en arabe, français et anglais.</p></div>
+  </div>
+  <div class="pub-cta fade-up"><a href="#" class="btn-secondary" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);" data-i18n="pub_all">Voir toutes les publications →</a></div>
+</section>
+
+<section id="dons">
+  <div class="donate-content fade-up">
+    <div class="section-label" data-i18n="donate_label">Soutenir la connaissance</div>
+    <h2 class="section-title"><span data-i18n="donate_title">Faites de notre travail votre </span><em data-i18n="donate_title_em">héritage</em></h2>
+    <div class="donate-quote">
+      <span data-i18n="donate_quote">« Lorsqu'un être humain décède, ses actions cessent sauf trois : une aumône durable, un héritage de connaissance ou un enfant vertueux qui prie pour lui. »</span>
+      <br/><br/><em style="font-size:0.9rem;color:var(--gold)" data-i18n="donate_author">— Le Prophète Muhammad ﷺ</em>
+    </div>
+    <a href="#" class="btn-primary" data-i18n="donate_btn">Contribuer aujourd'hui</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo" data-i18n="footer_logo">Hawzah Francophone</div>
+      <p data-i18n="footer_desc">Institut islamique dédié à l'éducation et à l'approfondissement des sciences islamiques pour les communautés francophones du monde entier.</p>
+      <div class="footer-langs" style="margin-top:16px"><span class="lang-badge">FR</span><span class="lang-badge">AR</span><span class="lang-badge">EN</span></div>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_col1">Formation</h4>
+      <ul><li><a href="#" data-i18n="footer_l1">Cours en ligne</a></li><li><a href="#" data-i18n="footer_l2">Cours en présentiel</a></li><li><a href="#" data-i18n="footer_l3">Parcours</a></li><li><a href="#" data-i18n="footer_l4">S'abonner</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_col2">Ressources</h4>
+      <ul><li><a href="#" data-i18n="footer_r1">Vidéos</a></li><li><a href="#" data-i18n="footer_r2">Podcast</a></li><li><a href="#" data-i18n="footer_r3">Publications</a></li><li><a href="#" data-i18n="footer_r4">Q & A</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_col3">Institut</h4>
+      <ul><li><a href="#" data-i18n="footer_i1">À propos</a></li><li><a href="#" data-i18n="footer_i2">Consultations</a></li><li><a href="#" data-i18n="footer_i3">Retraites</a></li><li><a href="#" data-i18n="footer_i4">Contact</a></li><li><a href="#" data-i18n="footer_i5">Don</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="footer_copy">© 2026 Hawzah Francophone. Tous droits réservés.</p>
+    <p style="font-family:'Amiri',serif;color:rgba(184,154,90,0.4);font-size:0.9rem;">الحوزة الفرانكوفونية</p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  fr: {
+    topbar:"بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ — Au nom de Dieu, le Tout Miséricordieux, le Très Miséricordieux",
+    logo_main:"Hawzah Francophone",logo_sub:"Institut Islamique",
+    nav_pathway:"Parcours",nav_courses:"Cours",nav_media:"Médias",nav_consult:"Consultations",nav_pub:"Publications",nav_donate:"Don",
+    hero_badge:"Institut Islamique Francophone",
+    hero_h1_1:"Découvrez",hero_h1_2:"la beauté de",hero_h1_em1:"l'Islam",hero_h1_3:"par la",hero_h1_em2:"connaissance",
+    hero_sub:"Hawzah Francophone est dédiée à approfondir la littératie islamique au sein de nos communautés, en proposant des ressources éducatives enrichissantes en français, arabe et anglais.",
+    hero_cta1:"Voir les cours",hero_cta2:"Notre parcours",
+    stat1:"Cours en ligne",stat2:"Langues",stat3:"Étudiants",stat4:"Sciences islamiques",
+    hero_quote:"« Cherchez la connaissance du berceau jusqu'à la tombe. »",hero_quote_author:"— Le Prophète Muhammad ﷺ",
+    pathway_label:"Hawzah Learning Pathway",pathway_title:"Votre parcours d'",pathway_title_em:"apprentissage",
+    pathway_desc:"Un chemin structuré du fondamental à l'avancé pour guider chaque chercheur de vérité.",
+    level1:"Niveau 1",level1_title:"Fondements de la Foi",level1_sub:"Commencez votre voyage avec les connaissances essentielles qui ancrent la croyance, la pratique et le caractère.",
+    l1c1:"Dieu et Ses Attributs",l1c2:"Théologie Islamique",l1c3:"Droit Islamique",l1c4:"Spiritualité Islamique",l1c5:"Introduction au Tajweed",l1c6:"Éthique Islamique",l1c7:"+ 2 cours au choix",
+    level2:"Niveau 2",level2_title:"Approfondissement",level2_sub:"Développez vos fondations grâce à une étude plus approfondie des sciences islamiques.",
+    l2c1:"Science du Hadith",l2c2:"Eschatologie Islamique",l2c3:"Grammaire Arabe",l2c4:"La Prière Islamique",l2c5:"Cosmologie Islamique",l2c6:"L'Imamat",l2c7:"+ 2 cours au choix",
+    level3:"Niveau 3",level3_title:"Enquête Avancée",level3_sub:"Engagez-vous avec des concepts complexes et des débats critiques pour renforcer votre intellect.",
+    l3c1:"Théorie Juridique Islamique",l3c2:"Jésus dans le Coran",l3c3:"L'Imam Al-Mahdi",l3c4:"Historiographie Islamique",l3c5:"Infaillibilité des Prophètes",l3c6:"Prédestination et Libre Arbitre",l3c7:"+ 2 cours au choix",
+    courses_label:"Cours en vedette",courses_title:"Explorez nos ",courses_title_em:"enseignements",courses_all:"Tous les cours →",
+    level1_short:"Niv. 1",level2_short:"Niv. 2",
+    c1_title:"La Science du Hadith",c1_desc:"Introduction à la terminologie du hadith et au développement historique de sa transmission.",
+    c2_title:"Dieu et Ses Attributs",c2_desc:"Exploration de la conception coranique de Dieu, ses attributs inhérents et relationnels.",
+    c3_title:"Introduction au Droit Islamique",c3_desc:"Aperçu général du droit islamique : histoire, sources et méthodologie.",
+    c4_title:"Grammaire Arabe",c4_desc:"Compréhension fondamentale des structures grammaticales de la langue arabe classique.",
+    c5_title:"Spiritualité Islamique",c5_desc:"Les thèmes clés de la purification intérieure dans la tradition islamique.",
+    c6_title:"L'Imamat dans la Pensée Islamique",c6_desc:"Fondements coraniques et signification théologique du concept d'Imamat.",
+    learn_more:"En savoir plus →",
+    media_label:"Contenus médias",media_title:"Vidéos & ",media_title_em:"Podcast",
+    media_desc:"Des contenus audiovisuels enrichissants pour nourrir votre réflexion spirituelle et intellectuelle.",
+    media_type1:"Série vidéo",media_title1:"Les Fondements de la Théologie Islamique",media_meta1:"12 épisodes · Français · Niveau débutant",
+    media_type2:"Podcast",media_title2:"Hawzah Talks – Questions contemporaines",media_meta2:"Épisodes hebdomadaires · FR / AR",
+    media_type3:"Conférences",media_title3:"L'Islam et le monde moderne",media_meta3:"Séries thématiques · Multilingue",
+    consult_label:"Consultations & Q&A",consult_title:"Des réponses à vos ",consult_title_em:"questions islamiques",
+    consult_desc:"Notre équipe de savants est disponible pour répondre à vos questions religieuses avec rigueur et bienveillance.",
+    cf1:"Questions de jurisprudence (fiqh) et de pratique quotidienne",cf2:"Questions théologiques et philosophiques",
+    cf3:"Consultations spirituelles personnalisées",cf4:"Réponses disponibles en français, arabe et anglais",cf5:"Accès à une archive de Q&A existants",
+    consult_btn:"Poser une question",
+    pub_label:"Publications",pub_title:"Nos ",pub_title_em:"ouvrages",pub_title2:" & ressources",
+    pub_desc:"Des publications rigoureuses pour accompagner votre apprentissage.",
+    pub1_title:"Articles & Essais",pub1_desc:"Analyses approfondies sur des sujets islamiques contemporains et classiques.",
+    pub2_title:"Guides d'étude",pub2_desc:"Documents pédagogiques et notes de cours pour compléter l'apprentissage.",
+    pub3_title:"Traductions",pub3_desc:"Textes classiques traduits en français pour les communautés francophones.",
+    pub4_title:"Lexiques & Glossaires",pub4_desc:"Références terminologiques en arabe, français et anglais.",
+    pub_all:"Voir toutes les publications →",
+    donate_label:"Soutenir la connaissance",donate_title:"Faites de notre travail votre ",donate_title_em:"héritage",
+    donate_quote:"« Lorsqu'un être humain décède, ses actions cessent sauf trois : une aumône durable, un héritage de connaissance ou un enfant vertueux qui prie pour lui. »",
+    donate_author:"— Le Prophète Muhammad ﷺ",donate_btn:"Contribuer aujourd'hui",
+    footer_logo:"Hawzah Francophone",footer_desc:"Institut islamique dédié à l'éducation et à l'approfondissement des sciences islamiques pour les communautés francophones du monde entier.",
+    footer_col1:"Formation",footer_col2:"Ressources",footer_col3:"Institut",
+    footer_l1:"Cours en ligne",footer_l2:"Cours en présentiel",footer_l3:"Parcours",footer_l4:"S'abonner",
+    footer_r1:"Vidéos",footer_r2:"Podcast",footer_r3:"Publications",footer_r4:"Q & A",
+    footer_i1:"À propos",footer_i2:"Consultations",footer_i3:"Retraites",footer_i4:"Contact",footer_i5:"Don",
+    footer_copy:"© 2026 Hawzah Francophone. Tous droits réservés."
+  },
+  ar: {
+    topbar:"بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ",
+    logo_main:"الحوزة الفرانكوفونية",logo_sub:"معهد إسلامي",
+    nav_pathway:"المنهج",nav_courses:"الدروس",nav_media:"الإعلام",nav_consult:"الاستشارات",nav_pub:"المنشورات",nav_donate:"التبرع",
+    hero_badge:"المعهد الإسلامي الناطق بالفرنسية",
+    hero_h1_1:"اكتشف",hero_h1_2:"جمال",hero_h1_em1:"الإسلام",hero_h1_3:"من خلال",hero_h1_em2:"العلم",
+    hero_sub:"الحوزة الفرانكوفونية مكرّسة لتعميق الثقافة الإسلامية في مجتمعاتنا من خلال موارد تعليمية ثرية باللغات الفرنسية والعربية والإنجليزية.",
+    hero_cta1:"عرض الدروس",hero_cta2:"منهجنا",
+    stat1:"دروس إلكترونية",stat2:"لغات",stat3:"طلاب",stat4:"العلوم الإسلامية",
+    hero_quote:"« اطلبوا العلم من المهد إلى اللحد »",hero_quote_author:"— النبي محمد ﷺ",
+    pathway_label:"مسار التعلم في الحوزة",pathway_title:"مسار ",pathway_title_em:"التعلّم",
+    pathway_desc:"مسار منظّم من الأساسيات إلى المتقدمين لإرشاد كل طالب للحقيقة.",
+    level1:"المستوى الأول",level1_title:"أسس الإيمان",level1_sub:"ابدأ رحلتك بالمعرفة الأساسية التي تُرسّخ العقيدة والممارسة والأخلاق.",
+    l1c1:"الله وصفاته",l1c2:"علم الكلام الإسلامي",l1c3:"الفقه الإسلامي",l1c4:"التصوف الإسلامي",l1c5:"مقدمة في التجويد",l1c6:"الأخلاق الإسلامية",l1c7:"+ مادتان اختياريتان",
+    level2:"المستوى الثاني",level2_title:"التعمق في المعرفة",level2_sub:"طوّر أسسك من خلال دراسة أعمق للعلوم والممارسات الإسلامية.",
+    l2c1:"علم الحديث",l2c2:"علم الآخرة",l2c3:"النحو العربي",l2c4:"الصلاة الإسلامية",l2c5:"علم الكونيات الإسلامي",l2c6:"الإمامة في الفكر الإسلامي",l2c7:"+ مادتان اختياريتان",
+    level3:"المستوى الثالث",level3_title:"البحث المتقدم",level3_sub:"تعامل مع المفاهيم المعقدة والنقاشات النقدية لتعزيز عقلك وبصيرتك الروحية.",
+    l3c1:"أصول الفقه",l3c2:"عيسى في القرآن",l3c3:"الإمام المهدي",l3c4:"المنهجية التاريخية الإسلامية",l3c5:"عصمة الأنبياء",l3c6:"القضاء والقدر والإرادة الحرة",l3c7:"+ مادتان اختياريتان",
+    courses_label:"دروس مميزة",courses_title:"استكشف ",courses_title_em:"دروسنا",courses_all:"← جميع الدروس",
+    level1_short:"م. ١",level2_short:"م. ٢",
+    c1_title:"علم الحديث",c1_desc:"مقدمة في مصطلح الحديث والتطور التاريخي لروايته.",
+    c2_title:"الله وصفاته",c2_desc:"استكشاف المفهوم القرآني لله وصفاته الذاتية والفعلية.",
+    c3_title:"مقدمة في الفقه الإسلامي",c3_desc:"نظرة عامة على الفقه الإسلامي: تاريخه ومصادره ومنهجيته.",
+    c4_title:"النحو العربي",c4_desc:"فهم أساسي لجميع التراكيب النحوية الأساسية في اللغة العربية الفصحى.",
+    c5_title:"التصوف الإسلامي",c5_desc:"المحاور الرئيسية في تزكية النفس والسير الروحي في التراث الإسلامي.",
+    c6_title:"الإمامة في الفكر الإسلامي",c6_desc:"الأسس القرآنية والأهمية اللاهوتية لمفهوم الإمامة.",
+    learn_more:"← معرفة المزيد",
+    media_label:"المحتوى الإعلامي",media_title:"فيديوهات و",media_title_em:"بودكاست",
+    media_desc:"محتوى مرئي ومسموع ثري يُغذي تفكيرك الروحي والفكري.",
+    media_type1:"سلسلة فيديو",media_title1:"أسس علم الكلام الإسلامي",media_meta1:"١٢ حلقة · بالفرنسية · للمبتدئين",
+    media_type2:"بودكاست",media_title2:"Hawzah Talks – مسائل معاصرة",media_meta2:"حلقات أسبوعية · FR / AR",
+    media_type3:"محاضرات مسجّلة",media_title3:"الإسلام والعالم المعاصر",media_meta3:"سلاسل موضوعية · متعدد اللغات",
+    consult_label:"الاستشارات والأسئلة",consult_title:"إجابات على ",consult_title_em:"أسئلتكم الإسلامية",
+    consult_desc:"فريقنا من العلماء متاح للإجابة على أسئلتكم الدينية بدقة ورحمة.",
+    cf1:"مسائل الفقه والممارسة اليومية",cf2:"مسائل العقيدة والفلسفة",
+    cf3:"استشارات روحية شخصية",cf4:"إجابات بالفرنسية والعربية والإنجليزية",cf5:"الوصول إلى أرشيف الأسئلة والأجوبة",
+    consult_btn:"طرح سؤال",
+    pub_label:"المنشورات",pub_title:"مؤلفاتنا ",pub_title_em:"ومواردنا",pub_title2:"",
+    pub_desc:"منشورات رصينة لمرافقة مسيرتكم التعليمية.",
+    pub1_title:"مقالات ودراسات",pub1_desc:"تحليلات معمّقة في موضوعات إسلامية معاصرة وكلاسيكية.",
+    pub2_title:"أدلة الدراسة",pub2_desc:"وثائق تربوية وملاحظات دروس لاستكمال التعلّم.",
+    pub3_title:"ترجمات",pub3_desc:"نصوص كلاسيكية مترجمة إلى الفرنسية للمجتمعات الناطقة بها.",
+    pub4_title:"قواميس ومعاجم",pub4_desc:"مراجع مصطلحية بالعربية والفرنسية والإنجليزية.",
+    pub_all:"← عرض جميع المنشورات",
+    donate_label:"دعم العلم والمعرفة",donate_title:"اجعل عملنا ",donate_title_em:"إرثك",
+    donate_quote:"« إذا مات الإنسان انقطع عمله إلا من ثلاث: صدقة جارية، أو علم ينتفع به، أو ولد صالح يدعو له »",
+    donate_author:"— النبي محمد ﷺ",donate_btn:"تبرع اليوم",
+    footer_logo:"الحوزة الفرانكوفونية",footer_desc:"معهد إسلامي مكرّس للتعليم وتعميق العلوم الإسلامية للمجتمعات الناطقة بالفرنسية في جميع أنحاء العالم.",
+    footer_col1:"التعليم",footer_col2:"الموارد",footer_col3:"المعهد",
+    footer_l1:"دروس إلكترونية",footer_l2:"دروس حضورية",footer_l3:"المنهج",footer_l4:"الاشتراك",
+    footer_r1:"فيديوهات",footer_r2:"بودكاست",footer_r3:"منشورات",footer_r4:"أسئلة وأجوبة",
+    footer_i1:"من نحن",footer_i2:"الاستشارات",footer_i3:"الخلوات",footer_i4:"اتصل بنا",footer_i5:"تبرع",
+    footer_copy:"© 2026 الحوزة الفرانكوفونية. جميع الحقوق محفوظة."
+  },
+  en: {
+    topbar:"In the Name of God, the Most Gracious, the Most Merciful",
+    logo_main:"Hawzah Francophone",logo_sub:"Islamic Institute",
+    nav_pathway:"Pathway",nav_courses:"Courses",nav_media:"Media",nav_consult:"Consultations",nav_pub:"Publications",nav_donate:"Donate",
+    hero_badge:"Francophone Islamic Institute",
+    hero_h1_1:"Discover",hero_h1_2:"the beauty of",hero_h1_em1:"Islam",hero_h1_3:"through",hero_h1_em2:"knowledge",
+    hero_sub:"Hawzah Francophone is dedicated to deepening Islamic literacy within our communities by offering enriching educational resources in French, Arabic and English.",
+    hero_cta1:"View courses",hero_cta2:"Our pathway",
+    stat1:"Online courses",stat2:"Languages",stat3:"Students",stat4:"Islamic sciences",
+    hero_quote:"« Seek knowledge from the cradle to the grave. »",hero_quote_author:"— Prophet Muhammad ﷺ",
+    pathway_label:"Hawzah Learning Pathway",pathway_title:"Your learning ",pathway_title_em:"pathway",
+    pathway_desc:"A structured path from foundations to advanced studies to guide every seeker of truth.",
+    level1:"Level 1",level1_title:"Foundations of Faith",level1_sub:"Begin your journey with essential knowledge that anchors belief, practice and character.",
+    l1c1:"God and His Attributes",l1c2:"Islamic Theology",l1c3:"Islamic Law",l1c4:"Islamic Spirituality",l1c5:"Introduction to Tajweed",l1c6:"Islamic Ethics",l1c7:"+ 2 electives",
+    level2:"Level 2",level2_title:"Deepening Understanding",level2_sub:"Build on your foundations through a deeper study of Islamic sciences and practices.",
+    l2c1:"The Science of Hadith",l2c2:"Islamic Eschatology",l2c3:"Arabic Grammar",l2c4:"The Islamic Prayer",l2c5:"Islamic Cosmology",l2c6:"Imamate in Islamic Thought",l2c7:"+ 2 electives",
+    level3:"Level 3",level3_title:"Advanced Inquiry",level3_sub:"Engage with challenging concepts and critical debates to strengthen your intellect and spiritual insight.",
+    l3c1:"Islamic Legal Theory",l3c2:"Jesus in the Quran",l3c3:"Imam Al-Mahdi",l3c4:"Islamic Historiography",l3c5:"Infallibility of the Prophets",l3c6:"Predestination and Free Will",l3c7:"+ 2 electives",
+    courses_label:"Featured courses",courses_title:"Explore our ",courses_title_em:"teachings",courses_all:"All courses →",
+    level1_short:"Lvl. 1",level2_short:"Lvl. 2",
+    c1_title:"The Science of Hadith",c1_desc:"Introduction to hadith terminology and the historical development of its transmission.",
+    c2_title:"God and His Attributes",c2_desc:"Exploring the Quranic conception of God, His inherent and relational attributes.",
+    c3_title:"Introduction to Islamic Law",c3_desc:"General overview of Islamic law and jurisprudence: history, sources and methodology.",
+    c4_title:"Arabic Grammar",c4_desc:"Foundational understanding of the basic grammatical structures of classical Arabic.",
+    c5_title:"Islamic Spirituality",c5_desc:"Key themes of inner purification and self-building in the Islamic tradition.",
+    c6_title:"Imamate in Islamic Thought",c6_desc:"Quranic foundations and theological significance of the concept of Imamate in Islam.",
+    learn_more:"Learn more →",
+    media_label:"Media content",media_title:"Videos & ",media_title_em:"Podcast",
+    media_desc:"Enriching audio-visual content to nourish your spiritual and intellectual reflection.",
+    media_type1:"Video series",media_title1:"Foundations of Islamic Theology",media_meta1:"12 episodes · French · Beginner level",
+    media_type2:"Podcast",media_title2:"Hawzah Talks – Contemporary Questions",media_meta2:"Weekly episodes · FR / AR",
+    media_type3:"Recorded lectures",media_title3:"Islam and the Modern World",media_meta3:"Thematic series · Multilingual",
+    consult_label:"Consultations & Q&A",consult_title:"Answers to your ",consult_title_em:"Islamic questions",
+    consult_desc:"Our team of scholars is available to answer your religious questions with rigour and compassion.",
+    cf1:"Questions of jurisprudence (fiqh) and daily practice",cf2:"Theological and philosophical questions",
+    cf3:"Personalised spiritual consultations",cf4:"Answers available in French, Arabic and English",cf5:"Access to an existing Q&A archive",
+    consult_btn:"Ask a question",
+    pub_label:"Publications",pub_title:"Our ",pub_title_em:"works",pub_title2:" & resources",
+    pub_desc:"Rigorous publications to accompany your learning journey.",
+    pub1_title:"Articles & Essays",pub1_desc:"In-depth analyses on contemporary and classical Islamic topics.",
+    pub2_title:"Study guides",pub2_desc:"Pedagogical documents and course notes to complement learning.",
+    pub3_title:"Translations",pub3_desc:"Classical texts translated into French for Francophone communities.",
+    pub4_title:"Lexicons & Glossaries",pub4_desc:"Terminological references in Arabic, French and English.",
+    pub_all:"View all publications →",
+    donate_label:"Support knowledge",donate_title:"Make our work your ",donate_title_em:"legacy",
+    donate_quote:"« When a human being dies, his deeds come to an end except for three: a recurring charity, knowledge that is benefited from, or a righteous child who prays for him. »",
+    donate_author:"— Prophet Muhammad ﷺ",donate_btn:"Contribute today",
+    footer_logo:"Hawzah Francophone",footer_desc:"An Islamic institute dedicated to education and the deepening of Islamic sciences for Francophone communities around the world.",
+    footer_col1:"Learning",footer_col2:"Resources",footer_col3:"Institute",
+    footer_l1:"Online courses",footer_l2:"In-person courses",footer_l3:"Pathway",footer_l4:"Subscribe",
+    footer_r1:"Videos",footer_r2:"Podcast",footer_r3:"Publications",footer_r4:"Q & A",
+    footer_i1:"About",footer_i2:"Consultations",footer_i3:"Retreats",footer_i4:"Contact",footer_i5:"Donate",
+    footer_copy:"© 2026 Hawzah Francophone. All rights reserved."
+  }
+};
+
+function setLang(lang) {
+  const t = T[lang];
+  const html = document.documentElement;
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  html.setAttribute('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active',
+      (btn.textContent==='FR'&&lang==='fr')||(btn.textContent==='ع'&&lang==='ar')||(btn.textContent==='EN'&&lang==='en'));
+  });
+  const titles = {fr:'Hawzah Francophone – Découvrez la Beauté de l\'Islam', ar:'الحوزة الفرانكوفونية – اكتشف جمال الإسلام', en:'Hawzah Francophone – Discover the Beauty of Islam'};
+  document.title = titles[lang];
+}
+
+// Scroll animations
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Nav highlight
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => { if(window.scrollY >= s.offsetTop-100) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => { a.style.color = a.getAttribute('href')==='#'+cur ? 'var(--gold-light)' : ''; });
+});
+</script>
+</body>
+</html>

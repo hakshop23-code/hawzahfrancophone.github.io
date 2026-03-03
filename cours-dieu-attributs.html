@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dieu et Ses Attributs — Hawzah Francophone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #b89a5a; --gold-light: #d4b87a; --gold-pale: #f5edd8;
+      --dark: #0f0e0b; --dark2: #1a1813; --dark3: #252219;
+      --cream: #faf7f0; --cream2: #f2ece0;
+      --text: #2a2418; --text-light: #6b5f48; --white: #fff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-thumb { background:var(--gold); }
+
+    /* NAV */
+    nav { background:rgba(15,14,11,0.97); backdrop-filter:blur(12px); border-bottom:1px solid rgba(184,154,90,0.2); display:flex; align-items:center; justify-content:space-between; padding:0 5%; height:64px; position:sticky; top:0; z-index:100; }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo svg { width:32px; height:32px; }
+    .nav-logo-text .main { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--gold-light); }
+    .nav-logo-text .sub { font-size:0.58rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; opacity:0.8; }
+    .nav-back { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; display:flex; align-items:center; gap:8px; transition:color 0.3s; }
+    .nav-back:hover { color:var(--gold-light); }
+
+    /* HERO COURS */
+    .course-hero { background:var(--dark); padding:80px 5% 60px; position:relative; overflow:hidden; }
+    .course-hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 70% 50%, rgba(184,154,90,0.07) 0%, transparent 60%); }
+    .course-hero-pattern { position:absolute; right:-60px; top:50%; transform:translateY(-50%); width:400px; height:400px; opacity:0.04; }
+    .course-hero-inner { position:relative; z-index:2; max-width:900px; margin:0 auto; }
+    .course-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(184,154,90,0.1); border:1px solid rgba(184,154,90,0.3); border-radius:100px; padding:5px 14px; margin-bottom:20px; font-size:0.68rem; color:var(--gold); letter-spacing:0.14em; text-transform:uppercase; }
+    .course-arabic-title { font-family:'Amiri',serif; font-size:1.8rem; color:var(--gold); opacity:0.7; direction:rtl; margin-bottom:12px; }
+    .course-hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:300; color:var(--white); line-height:1.2; margin-bottom:16px; }
+    .course-hero h1 em { font-style:italic; color:var(--gold-light); }
+    .course-hero-desc { font-size:0.95rem; color:rgba(255,255,255,0.55); line-height:1.85; max-width:620px; margin-bottom:32px; }
+    .course-meta-row { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:32px; }
+    .course-meta-item { display:flex; align-items:center; gap:8px; font-size:0.78rem; color:rgba(255,255,255,0.5); }
+    .course-meta-item span { color:var(--gold); }
+    .btn-enroll { background:var(--gold); color:var(--dark); padding:13px 32px; border:none; border-radius:2px; font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; text-decoration:none; display:inline-block; transition:background 0.3s, transform 0.2s; }
+    .btn-enroll:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+    /* LAYOUT */
+    .course-layout { max-width:1100px; margin:0 auto; padding:60px 5%; display:grid; grid-template-columns:1fr 320px; gap:50px; align-items:start; }
+
+    /* MAIN CONTENT */
+    .course-main {}
+
+    .course-section { margin-bottom:56px; }
+    .course-section-title { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--text); margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--cream2); display:flex; align-items:center; gap:12px; }
+    .course-section-title::before { content:''; width:3px; height:24px; background:var(--gold); border-radius:2px; flex-shrink:0; }
+
+    /* LEÇONS */
+    .lessons-list { display:flex; flex-direction:column; gap:2px; }
+    .lesson-item { background:var(--white); border:1px solid rgba(0,0,0,0.06); border-radius:3px; overflow:hidden; }
+    .lesson-header { display:flex; align-items:center; gap:16px; padding:18px 20px; cursor:pointer; transition:background 0.2s; }
+    .lesson-header:hover { background:var(--gold-pale); }
+    .lesson-number { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--gold); font-weight:600; min-width:28px; }
+    .lesson-title { flex:1; font-size:0.9rem; font-weight:500; color:var(--text); }
+    .lesson-duration { font-size:0.72rem; color:var(--text-light); }
+    .lesson-toggle { color:var(--gold); font-size:0.8rem; transition:transform 0.3s; }
+    .lesson-item.open .lesson-toggle { transform:rotate(180deg); }
+    .lesson-body { display:none; padding:0 20px 24px 64px; border-top:1px solid var(--cream2); }
+    .lesson-item.open .lesson-body { display:block; }
+    .lesson-body p { font-size:0.88rem; color:var(--text-light); line-height:1.85; margin-bottom:16px; margin-top:16px; }
+    .lesson-body .ayah { background:var(--dark2); border-right:3px solid var(--gold); padding:16px 20px; margin:16px 0; border-radius:0 3px 3px 0; }
+    .lesson-body .ayah .arabic { font-family:'Amiri',serif; font-size:1.3rem; color:var(--gold-light); direction:rtl; text-align:right; line-height:1.8; margin-bottom:8px; }
+    .lesson-body .ayah .traduction { font-size:0.8rem; color:rgba(255,255,255,0.55); font-style:italic; }
+    .lesson-body .ayah .reference { font-size:0.68rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px; }
+    .lesson-body .hadith { background:var(--cream2); border-left:3px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 3px 3px 0; }
+    .lesson-body .hadith .arabic { font-family:'Amiri',serif; font-size:1.1rem; color:var(--text); direction:rtl; text-align:right; line-height:1.8; margin-bottom:6px; }
+    .lesson-body .hadith .traduction { font-size:0.82rem; color:var(--text-light); font-style:italic; }
+    .lesson-body .hadith .source { font-size:0.68rem; color:var(--gold); letter-spacing:0.08em; margin-top:4px; }
+    .lesson-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin:12px 0; }
+    .lesson-body ul li { font-size:0.86rem; color:var(--text-light); padding-left:16px; position:relative; line-height:1.6; }
+    .lesson-body ul li::before { content:'✦'; position:absolute; left:0; color:var(--gold); font-size:0.6rem; top:3px; }
+    .lesson-body .key-concept { background:rgba(184,154,90,0.08); border:1px solid rgba(184,154,90,0.2); border-radius:3px; padding:12px 16px; margin:12px 0; }
+    .lesson-body .key-concept strong { font-size:0.75rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:6px; }
+    .lesson-body .key-concept p { margin:0; font-size:0.84rem; color:var(--text); }
+
+    /* OBJECTIFS */
+    .objectives-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .objective-card { background:var(--white); border:1px solid rgba(0,0,0,0.06); padding:16px; border-radius:3px; display:flex; align-items:flex-start; gap:12px; }
+    .objective-icon { color:var(--gold); font-size:1rem; flex-shrink:0; margin-top:2px; }
+    .objective-card p { font-size:0.83rem; color:var(--text-light); line-height:1.6; }
+
+    /* SIDEBAR */
+    .course-sidebar { position:sticky; top:84px; }
+    .sidebar-card { background:var(--white); border:1px solid rgba(0,0,0,0.08); border-radius:4px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.08); }
+    .sidebar-thumb { background:var(--dark2); height:160px; display:flex; align-items:center; justify-content:center; position:relative; }
+    .sidebar-thumb-icon { font-family:'Amiri',serif; font-size:4rem; color:var(--gold); opacity:0.4; }
+    .sidebar-thumb-badge { position:absolute; top:12px; left:12px; background:var(--gold); color:var(--dark); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:2px; }
+    .sidebar-body { padding:24px; }
+    .sidebar-price { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:var(--text); margin-bottom:4px; }
+    .sidebar-price .free { color:var(--gold); }
+    .sidebar-price-note { font-size:0.75rem; color:var(--text-light); margin-bottom:20px; }
+    .sidebar-enroll { display:block; width:100%; background:var(--gold); color:var(--dark); padding:13px; border:none; border-radius:2px; font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; text-align:center; transition:background 0.3s; margin-bottom:16px; }
+    .sidebar-enroll:hover { background:var(--gold-light); }
+    .sidebar-includes { list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:16px; padding-top:16px; border-top:1px solid var(--cream2); }
+    .sidebar-includes li { font-size:0.8rem; color:var(--text-light); display:flex; align-items:center; gap:10px; }
+    .sidebar-includes li span { color:var(--gold); }
+
+    /* PROGRESS */
+    .progress-bar-wrap { background:var(--cream2); border-radius:100px; height:4px; margin:8px 0 4px; }
+    .progress-bar { background:var(--gold); height:4px; border-radius:100px; width:0%; transition:width 1s ease; }
+    .progress-label { font-size:0.7rem; color:var(--text-light); }
+
+    /* IMAM QUOTE */
+    .imam-quote { background:var(--dark2); border-radius:4px; padding:28px; margin:32px 0; position:relative; overflow:hidden; }
+    .imam-quote::before { content:'❝'; position:absolute; top:-10px; left:16px; font-size:5rem; color:rgba(184,154,90,0.08); font-family:Georgia,serif; line-height:1; }
+    .imam-quote .arabic { font-family:'Amiri',serif; font-size:1.4rem; color:var(--gold-light); direction:rtl; text-align:right; line-height:1.8; margin-bottom:12px; }
+    .imam-quote .french { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:10px; }
+    .imam-quote .source { font-size:0.7rem; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase; }
+
+    /* FADE */
+    .fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) { .course-layout { grid-template-columns:1fr; } .course-sidebar { position:static; } .objectives-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 60 60" fill="none">
+      <polygon points="30,4 56,20 56,40 30,56 4,40 4,20" stroke="#b89a5a" stroke-width="1.5" fill="none"/>
+      <polygon points="30,14 46,23 46,37 30,46 14,37 14,23" stroke="#b89a5a" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="30" cy="30" r="5" fill="#b89a5a" opacity="0.7"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="main">Hawzah Francophone</span>
+      <span class="sub">Institut Islamique</span>
+    </div>
+  </a>
+  <a href="index.html" class="nav-back">← Retour aux cours</a>
+</nav>
+
+<!-- HERO -->
+<div class="course-hero">
+  <div class="course-hero-bg"></div>
+  <svg class="course-hero-pattern" viewBox="0 0 400 400" fill="none">
+    <g stroke="#b89a5a" stroke-width="1">
+      <polygon points="200,10 390,110 390,290 200,390 10,290 10,110"/>
+      <polygon points="200,40 360,130 360,270 200,360 40,270 40,130"/>
+      <circle cx="200" cy="200" r="80"/><circle cx="200" cy="200" r="120"/>
+      <line x1="200" y1="10" x2="200" y2="390"/>
+      <line x1="10" y1="110" x2="390" y2="290"/>
+      <line x1="390" y1="110" x2="10" y2="290"/>
+    </g>
+  </svg>
+  <div class="course-hero-inner">
+    <div class="course-badge">Niveau 1 · Théologie Islamique · École d'Ahlul Bayt ع</div>
+    <div class="course-arabic-title">اللهُ وَصِفَاتُهُ</div>
+    <h1>Dieu et Ses <em>Attributs</em></h1>
+    <p class="course-hero-desc">Une exploration approfondie de la conception coranique de Dieu selon la tradition des Ahlul Bayt ع. Ce cours examine les attributs divins essentiels et relationnels, les preuves rationnelles de l'existence de Dieu, et la vision unique de la théologie imamite.</p>
+    <div class="course-meta-row">
+      <div class="course-meta-item"><span>📚</span> 5 leçons</div>
+      <div class="course-meta-item"><span>⏱</span> ~3 heures</div>
+      <div class="course-meta-item"><span>🌍</span> Français</div>
+      <div class="course-meta-item"><span>📖</span> Niveau débutant</div>
+      <div class="course-meta-item"><span>✅</span> Gratuit</div>
+    </div>
+    <a href="#inscription" class="btn-enroll">S'inscrire gratuitement</a>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="course-layout">
+
+  <!-- MAIN -->
+  <div class="course-main">
+
+    <!-- OBJECTIFS -->
+    <div class="course-section fade-up">
+      <h2 class="course-section-title">Objectifs du cours</h2>
+      <div class="objectives-grid">
+        <div class="objective-card"><div class="objective-icon">✦</div><p>Comprendre la conception coranique de Dieu selon la tradition imamite</p></div>
+        <div class="objective-card"><div class="objective-icon">✦</div><p>Distinguer les attributs essentiels (Sifat Dhatiyya) des attributs relationnels (Sifat Fi'liyya)</p></div>
+        <div class="objective-card"><div class="objective-icon">✦</div><p>Connaître les preuves rationnelles de l'existence et de l'unicité divine (Tawhid)</p></div>
+        <div class="objective-card"><div class="objective-icon">✦</div><p>S'appuyer sur les enseignements des Imams de l'Ahlul Bayt ع en matière de théologie</p></div>
+      </div>
+    </div>
+
+    <!-- CITATION IMAM -->
+    <div class="imam-quote fade-up">
+      <div class="arabic">الحَمدُ للهِ الَّذِي لَا يُبلَغُ مِدحَتُهُ القَائِلُونَ</div>
+      <div class="french">« Louange à Dieu que les orateurs ne peuvent atteindre par leurs éloges, que les dénombreurs ne peuvent épuiser par leurs dénombrements... »</div>
+      <div class="source">— Imam Ali ibn Abi Talib ع, Nahjul Balagha, Sermon 1</div>
+    </div>
+
+    <!-- LEÇONS -->
+    <div class="course-section fade-up">
+      <h2 class="course-section-title">Leçons du cours</h2>
+      <div class="lessons-list">
+
+        <!-- LEÇON 1 -->
+        <div class="lesson-item open">
+          <div class="lesson-header" onclick="toggleLesson(this)">
+            <div class="lesson-number">01</div>
+            <div class="lesson-title">Introduction au Tawhid — L'Unicité Divine</div>
+            <div class="lesson-duration">30 min</div>
+            <div class="lesson-toggle">▼</div>
+          </div>
+          <div class="lesson-body">
+            <p>Le <strong>Tawhid</strong> (التوحيد) est le fondement de toute la théologie islamique. Il signifie l'affirmation de l'unicité absolue de Dieu — qu'Il est Un dans Son Essence, Ses Attributs et Ses Actes. Pour les Ahlul Bayt ع, le Tawhid n'est pas simplement une croyance abstraite, mais une réalité vivante qui transforme l'être humain dans toutes ses dimensions.</p>
+
+            <div class="ayah">
+              <div class="arabic">قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</div>
+              <div class="traduction">« Dis : Il est Allah, l'Unique. Allah, le Subsistant. Il n'a pas engendré et n'a pas été engendré. Et nul n'est égal à Lui. »</div>
+              <div class="reference">Sourate Al-Ikhlas (112), versets 1-4</div>
+            </div>
+
+            <div class="key-concept">
+              <strong>Concept clé</strong>
+              <p>Le Tawhid se divise en trois niveaux : <em>Tawhid Dhati</em> (unicité d'Essence), <em>Tawhid Sifati</em> (unicité des Attributs) et <em>Tawhid Af'ali</em> (unicité des Actes).</p>
+            </div>
+
+            <div class="hadith">
+              <div class="arabic">أَوَّلُ الدِّينِ مَعرِفَتُهُ، وَكَمَالُ مَعرِفَتِهِ التَّصدِيقُ بِهِ</div>
+              <div class="traduction">« Le commencement de la religion est la connaissance de Dieu, et la perfection de cette connaissance est de croire en Lui. »</div>
+              <div class="source">Imam Ali ع, Nahjul Balagha, Sermon 1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEÇON 2 -->
+        <div class="lesson-item">
+          <div class="lesson-header" onclick="toggleLesson(this)">
+            <div class="lesson-number">02</div>
+            <div class="lesson-title">Les Attributs Essentiels de Dieu (Sifat Dhatiyya)</div>
+            <div class="lesson-duration">35 min</div>
+            <div class="lesson-toggle">▼</div>
+          </div>
+          <div class="lesson-body">
+            <p>Les <strong>Sifat Dhatiyya</strong> (الصفات الذاتية) sont les attributs qui appartiennent à l'Essence même de Dieu. Ils ne sont pas séparés de Son Essence mais en sont une description. Selon la théologie imamite, ces attributs sont identiques à l'Essence divine — il n'y a pas de multiplicité en Dieu.</p>
+
+            <p>Les principaux attributs essentiels sont :</p>
+            <ul>
+              <li><strong>Al-Wujud</strong> (الوجود) — L'Existence nécessaire : Dieu existe par Lui-même, sans cause extérieure</li>
+              <li><strong>Al-Qidam</strong> (القِدَم) — L'Éternité sans commencement : Dieu n'a pas été précédé par le néant</li>
+              <li><strong>Al-Baqa</strong> (البَقاء) — La Permanence éternelle : Dieu ne cessera jamais d'exister</li>
+              <li><strong>Al-Wahdaniyya</strong> (الوحدانية) — L'Unicité absolue : Dieu est Un sans associé ni partenaire</li>
+              <li><strong>Al-Qudra</strong> (القُدرة) — La Toute-Puissance : Dieu est capable de tout ce qu'Il veut</li>
+              <li><strong>Al-'Ilm</strong> (العِلم) — La Toute-Science : Dieu connaît toutes choses, apparentes et cachées</li>
+            </ul>
+
+            <div class="ayah">
+              <div class="arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ</div>
+              <div class="traduction">« Allah ! Pas de divinité à part Lui, le Vivant, Celui qui subsiste par lui-même. Ni somnolence ni sommeil ne Le saisissent. »</div>
+              <div class="reference">Sourate Al-Baqara (2), verset 255 — Ayat Al-Kursi</div>
+            </div>
+
+            <div class="key-concept">
+              <strong>Position imamite distincte</strong>
+              <p>Contrairement à certaines écoles sunnites, la théologie imamite (suivant les Imams ع) affirme que les attributs divins ne sont pas distincts de l'Essence. Attribuer une multiplicité à Dieu reviendrait à nier le Tawhid véritable.</p>
+            </div>
+
+            <div class="hadith">
+              <div class="arabic">مَن زَعَمَ أَنَّهُ يَعرِفُ اللهَ بِحِجابٍ أَو بِصُورَةٍ أَو بِمِثالٍ فَهُوَ مُشرِكٌ</div>
+              <div class="traduction">« Celui qui prétend connaître Allah à travers un voile, une forme ou une ressemblance est un associateur. »</div>
+              <div class="source">Imam Ja'far Al-Sadiq ع, Al-Kafi, vol.1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEÇON 3 -->
+        <div class="lesson-item">
+          <div class="lesson-header" onclick="toggleLesson(this)">
+            <div class="lesson-number">03</div>
+            <div class="lesson-title">Les Attributs Relationnels de Dieu (Sifat Fi'liyya)</div>
+            <div class="lesson-duration">35 min</div>
+            <div class="lesson-toggle">▼</div>
+          </div>
+          <div class="lesson-body">
+            <p>Les <strong>Sifat Fi'liyya</strong> (الصفات الفعلية) sont les attributs qui décrivent la relation de Dieu avec Sa création. Contrairement aux attributs essentiels, ceux-ci émergent de l'action divine et impliquent une relation entre Dieu et ce qu'Il a créé.</p>
+
+            <ul>
+              <li><strong>Al-Khaliq</strong> (الخالق) — Le Créateur : Dieu crée ex nihilo, à partir de rien</li>
+              <li><strong>Al-Raziq</strong> (الرازق) — Le Pourvoyeur : Dieu subvient aux besoins de toute Sa création</li>
+              <li><strong>Al-Muhyi</strong> (المُحيي) — Celui qui donne la vie</li>
+              <li><strong>Al-Mumit</strong> (المُميت) — Celui qui donne la mort</li>
+              <li><strong>Al-Ghafur</strong> (الغفور) — Le Très Pardonnant</li>
+              <li><strong>Al-Rahman / Al-Rahim</strong> (الرحمن الرحيم) — Le Tout Miséricordieux, le Très Miséricordieux</li>
+            </ul>
+
+            <div class="ayah">
+              <div class="arabic">وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا</div>
+              <div class="traduction">« Les plus beaux noms appartiennent à Allah. Invoquez-Le par ces noms. »</div>
+              <div class="reference">Sourate Al-A'raf (7), verset 180</div>
+            </div>
+
+            <div class="key-concept">
+              <strong>La miséricorde divine selon l'Ahlul Bayt ع</strong>
+              <p>L'Imam Al-Sadiq ع enseigne que <em>Al-Rahman</em> désigne la miséricorde universelle de Dieu envers toute Sa création, tandis qu'<em>Al-Rahim</em> désigne Sa miséricorde particulière envers les croyants dans l'au-delà.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEÇON 4 -->
+        <div class="lesson-item">
+          <div class="lesson-header" onclick="toggleLesson(this)">
+            <div class="lesson-number">04</div>
+            <div class="lesson-title">La Tanzih — Transcendance et Incomparabilité Divine</div>
+            <div class="lesson-duration">30 min</div>
+            <div class="lesson-toggle">▼</div>
+          </div>
+          <div class="lesson-body">
+            <p>La <strong>Tanzih</strong> (التنزيه) est le principe fondamental qui affirme que Dieu est absolument transcendant et incomparable à Sa création. Il s'agit de nier toute ressemblance (tashbih) entre Dieu et Ses créatures tout en affirmant Ses attributs de perfection.</p>
+
+            <p>Selon la théologie imamite, deux erreurs opposées sont à éviter :</p>
+            <ul>
+              <li><strong>Al-Tashbih</strong> (التشبيه) — L'anthropomorphisme : comparer Dieu à Ses créatures</li>
+              <li><strong>Al-Ta'til</strong> (التعطيل) — Le négationnisme : nier tous les attributs divins</li>
+            </ul>
+
+            <div class="imam-quote" style="margin:16px 0;padding:20px;">
+              <div class="arabic" style="font-size:1.1rem;">لَيسَ كَمِثلِهِ شَيءٌ وَهُوَ السَّمِيعُ البَصِيرُ</div>
+              <div class="french" style="font-size:0.88rem;">« Rien n'est semblable à Lui, et c'est Lui l'Audient, le Clairvoyant. »</div>
+              <div class="source">Sourate Al-Shura (42), verset 11</div>
+            </div>
+
+            <div class="hadith">
+              <div class="arabic">إِنَّ اللهَ تَعَالَى لَا يُوصَفُ بِزَمانٍ وَلا مَكانٍ وَلا حَرَكَةٍ وَلا انتِقالٍ</div>
+              <div class="traduction">« Certes, Dieu le Très-Haut ne peut être décrit par le temps, ni par le lieu, ni par le mouvement, ni par le déplacement. »</div>
+              <div class="source">Imam Ali Al-Ridha ع, 'Uyun Akhbar Al-Ridha</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEÇON 5 -->
+        <div class="lesson-item">
+          <div class="lesson-header" onclick="toggleLesson(this)">
+            <div class="lesson-number">05</div>
+            <div class="lesson-title">Les Preuves Rationnelles de l'Existence de Dieu</div>
+            <div class="lesson-duration">40 min</div>
+            <div class="lesson-toggle">▼</div>
+          </div>
+          <div class="lesson-body">
+            <p>La tradition intellectuelle des Imams de l'Ahlul Bayt ع a toujours encouragé le raisonnement rationnel ('aql) pour connaître Dieu. L'Imam Ja'far Al-Sadiq ع est célèbre pour ses débats avec des athées et des philosophes de son époque, offrant des arguments rationnels solides.</p>
+
+            <p>Les principales preuves rationnelles sont :</p>
+            <ul>
+              <li><strong>Dalil Al-Huduth</strong> — La preuve de la contingence : tout ce qui existe dans le monde est contingent (mumkin al-wujud) et nécessite une cause ; cette chaîne doit s'arrêter à un Être nécessairement existant (wajib al-wujud)</li>
+              <li><strong>Dalil Al-Nizam</strong> — La preuve de l'ordre : l'ordre admirable et la précision de l'univers témoignent d'un Créateur sage et savant</li>
+              <li><strong>Dalil Al-Fitra</strong> — La preuve de la nature innée : chaque être humain possède une disposition naturelle (fitra) qui le porte vers la reconnaissance de Dieu</li>
+            </ul>
+
+            <div class="ayah">
+              <div class="arabic">أَفِي اللَّهِ شَكٌّ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ</div>
+              <div class="traduction">« Y a-t-il un doute au sujet d'Allah, Créateur des cieux et de la terre ? »</div>
+              <div class="reference">Sourate Ibrahim (14), verset 10</div>
+            </div>
+
+            <div class="hadith">
+              <div class="arabic">قَالَ رَجُلٌ لِلإِمَامِ الصَّادِقِ ع: دُلَّنِي عَلَى اللهِ مَا هُوَ؟ فَقَالَ: يَا عَبدَ اللهِ، هَل رَكِبتَ سَفِينَةً قَطُّ؟ قَالَ: نَعَم. قَالَ: فَهَل كُسِرَت بِكَ؟ قَالَ: نَعَم. قَالَ: فَهَل تَعَلَّقَ قَلبُكَ بِشَيءٍ يُنجِيكَ؟ قَالَ: نَعَم. قَالَ: ذَلِكَ الشَّيءُ هُوَ اللهُ</div>
+              <div class="traduction">« Un homme dit à l'Imam Al-Sadiq ع : "Guide-moi vers Allah, qu'est-Il ?" L'Imam dit : "As-tu jamais navigué en bateau ? As-tu fait naufrage ? Ton cœur s'est-il alors accroché à quelque chose pour te sauver ?" L'homme dit : "Oui." L'Imam dit : "Cette chose, c'est Allah." »</div>
+              <div class="source">Imam Ja'far Al-Sadiq ع, Al-Tawhid de Al-Saduq</div>
+            </div>
+
+            <div class="key-concept">
+              <strong>La Fitra — La disposition innée</strong>
+              <p>Le Prophète ﷺ a dit : « Tout enfant naît avec la fitra. » Selon les Imams ع, cette disposition naturelle est la reconnaissance innée de Dieu, gravée dans l'âme humaine avant même la naissance.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RÉSUMÉ -->
+    <div class="course-section fade-up">
+      <h2 class="course-section-title">Ce que vous avez appris</h2>
+      <div class="imam-quote">
+        <div class="arabic">مَعرِفَةُ اللهِ سُبحَانَهُ أَعلَى المَعارِفِ</div>
+        <div class="french">« La connaissance de Dieu, Gloire à Lui, est la plus haute des connaissances. »</div>
+        <div class="source">— Imam Ali ibn Abi Talib ع, Ghurarul Hikam</div>
+      </div>
+      <p style="font-size:0.9rem;color:var(--text-light);line-height:1.85;margin-top:20px;">En complétant ce cours, vous avez acquis une compréhension solide du Tawhid selon la tradition imamite, des attributs divins essentiels et relationnels, du principe de transcendance (Tanzih), et des preuves rationnelles de l'existence de Dieu transmises par les Imams de l'Ahlul Bayt ع. Ces fondements vous prépareront pour les cours plus avancés de théologie islamique.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="course-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-thumb">
+        <div class="sidebar-thumb-icon">الله</div>
+        <div class="sidebar-thumb-badge">Gratuit</div>
+      </div>
+      <div class="sidebar-body">
+        <div class="sidebar-price"><span class="free">Gratuit</span></div>
+        <div class="sidebar-price-note">Accès illimité à toutes les leçons</div>
+        <button class="sidebar-enroll" id="inscription">Commencer le cours</button>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-label">0 / 5 leçons complétées</div>
+        <ul class="sidebar-includes">
+          <li><span>📚</span> 5 leçons complètes</li>
+          <li><span>📖</span> Versets coraniques commentés</li>
+          <li><span>💬</span> Hadiths des Imams ع</li>
+          <li><span>🧠</span> Concepts théologiques clés</li>
+          <li><span>🌍</span> En français</li>
+          <li><span>♾️</span> Accès à vie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;padding:30px;font-size:0.78rem;border-top:1px solid rgba(184,154,90,0.1);">
+  <p style="font-family:'Amiri',serif;color:rgba(184,154,90,0.5);font-size:1rem;margin-bottom:8px;">الحوزة الفرانكوفونية</p>
+  © 2026 Hawzah Francophone — <a href="index.html" style="color:var(--gold);text-decoration:none;">Retour à l'accueil</a>
+</footer>
+
+<script>
+  function toggleLesson(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Scroll animations
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Progress bar animation
+  setTimeout(() => {
+    document.getElementById('progressBar').style.width = '0%';
+  }, 500);
+</script>
+</body>
+</html>
